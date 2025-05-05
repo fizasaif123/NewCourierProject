@@ -12,7 +12,8 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Warehouse, TruckIcon, BoxIcon, BarChart3Icon, Users2Icon } from 'lucide-react';
-
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 // Initialize Supabase client
 const supabaseUrl = "https://qpkaklmbiwitlroykjim.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFwa2FrbG1iaXdpdGxyb3lramltIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNjgxMzg2MiwiZXhwIjoyMDUyMzg5ODYyfQ.IBTdBXb3hjobEUDeMGRNbRKZoavL0Bvgpyoxb1HHr34";
@@ -37,7 +38,15 @@ export default function LoginPage() {
   const [clientFormData, setClientFormData] = useState({ email: '', password: '' });
   const [courierFormData, setCourierFormData] = useState({ email: '', password: '' });
   const [customerFormData, setCustomerFormData] = useState({ email: '', password: '' });
-
+  const saveUserToCookies = (client:any) => {
+      // Set the currentUser cookie when client object is available
+      Cookies.set('user', JSON.stringify({
+        id: client.id,
+        email: client.email,
+        company: client.company,
+        type: 'client'
+      }), { expires: 7 }); // Expires in 7 days
+  };
   const handleClientSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -66,8 +75,9 @@ export default function LoginPage() {
         company: client.company,
         type: 'client'
       }));
-      
+      saveUserToCookies(client);
       toast.success(`Welcome back, ${client.company}!`);
+      console.log("hehhe")
       router.push('/dashboard');
     } catch (error) {
       console.error('Sign in error:', error);
