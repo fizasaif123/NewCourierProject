@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+    --chart-1: 221 83% 53%;
+    --chart-2: 142 76% 36%;
+    --chart-3: 31 97% 44%;
+    --chart-4: 262 83% 58%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Enhanced Page Transitions */
+.page-transition {
+  animation: pageEnter 0.5s ease-out;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skip to main content */
+.skip-to-content {
+  @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-md focus:shadow-lg;
+}
+
+/* Keyboard focus styles */
+.keyboard-focus {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+}
+
+/* Hover contrast effect */
+.hover-contrast {
+  @apply hover:bg-primary/10 dark:hover:bg-primary/20;
+}
+
+/* Header gradient */
+.header-gradient {
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600;
+}
+
+/* Card gradient */
+.card-gradient {
+  @apply bg-gradient-to-br from-background to-secondary/50;
+}
+
+/* Chart gradient */
+.chart-gradient {
+  @apply bg-gradient-to-br from-background to-secondary/30;
+}
+
+/* Shadow elevation */
+.shadow-elevation-1 {
+  @apply shadow-md hover:shadow-lg transition-shadow duration-200;
+}
+
+.shadow-elevation-2 {
+  @apply shadow-lg hover:shadow-xl transition-shadow duration-200;
+}
+
+/* Enhanced Button Hover Effects */
+.button-hover {
+  @apply transition-all duration-200 hover:scale-105 active:scale-95;
+}
+
+/* Enhanced Card Hover Effects */
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-lg hover:translate-y-[-2px];
+}
+
+/* Responsive Table Container */
+.table-container {
+  @apply overflow-x-auto -mx-4 sm:mx-0;
+}
+
+.table-container table {
+  @apply min-w-full;
+}
+
+/* Enhanced Form Controls */
+.form-control-hover {
+  @apply transition-colors duration-200 hover:border-primary/50 focus-within:border-primary;
+}
+
+/* Tooltip Styles */
+.tooltip {
+  @apply invisible absolute z-50 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 transition-all duration-200 whitespace-nowrap;
+}
+
+.tooltip-trigger:hover .tooltip {
+  @apply visible opacity-100;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .mobile-nav {
+    @apply fixed inset-0 z-50 bg-background/95 backdrop-blur-sm;
+  }
+
+  .mobile-nav-content {
+    @apply h-full w-64 bg-background border-r shadow-xl;
+  }
+}
+
+/* Responsive Grid Layouts */
+.responsive-grid {
+  @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+.responsive-grid-wide {
+  @apply grid gap-4 md:grid-cols-2 xl:grid-cols-3;
+}
+
+/* Loading States */
+.loading-shimmer {
+  @apply animate-pulse bg-muted rounded;
+}
+
+/* Enhanced Focus Indicators */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+/* Dropdown Menu Animation */
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu-content {
+  animation: slideDownAndFade 0.2s ease-out;
+  transform-origin: top;
+}
+
+.dropdown-menu-item {
+  @apply flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm outline-none transition-colors;
+  @apply hover:bg-primary/10 dark:hover:bg-primary/20;
+  @apply focus:bg-primary/10 dark:focus:bg-primary/20;
+  @apply active:scale-[0.98];
+}
+
+.dropdown-menu-separator {
+  @apply my-1 h-px bg-border;
+}
+
+.dropdown-menu-label {
+  @apply px-3 py-2 text-sm font-medium text-foreground/60;
+}
+
+/* Enhanced Map Container */
+.map-container {
+  @apply rounded-lg overflow-hidden border shadow-md;
+  @apply transition-all duration-200;
+  @apply hover:shadow-lg;
+}
+
+/* Chart Tooltips */
+.chart-tooltip {
+  @apply bg-background/95 backdrop-blur-sm border rounded-lg shadow-lg p-2;
+  @apply text-sm;
+}
+
+/* Status Indicators */
+.status-indicator {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.status-indicator-dot {
+  @apply w-1.5 h-1.5 rounded-full;
+}
+
+/* Interactive Elements */
+.interactive-element {
+  @apply transition-all duration-200;
+  @apply hover:scale-105 active:scale-95;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-xl;
+  }
+  h2 {
+    @apply text-lg;
+  }
+  .text-sm {
+    @apply text-xs;
+  }
+}
