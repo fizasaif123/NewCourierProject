@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { supabase } from "./supabaseClient";
+import { supabase } from "./SupabaseClient";
 import { motion, AnimatePresence } from "framer-motion"; // For animations
 
 export function TrackingContent() {
