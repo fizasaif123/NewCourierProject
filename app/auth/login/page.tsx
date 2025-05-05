@@ -212,6 +212,8 @@ export default function LoginPage() {
                         required
                   className="bg-gray-50 border border-gray-200"
                 />
+                    <p className='text-sm'>Don&apos;t have an account?<Link className='ml-2 text-blue-700' href={"/auth/signup"}>Create Now !</Link></p>
+
                 <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow" disabled={isLoading}>
                   {isLoading ? 'Authenticating...' : 'Sign In'}
                 </Button>
@@ -242,7 +244,6 @@ export default function LoginPage() {
                   className="bg-gray-50 border border-gray-200"
                 />
                 
-                    <p className='text-sm'>Don&apos;t have an account?<Link className='ml-2 text-blue-700' href={"/auth/signup"}>Create Now !</Link></p>
 
                 <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow" disabled={isLoading}>
                   {isLoading ? 'Authenticating...' : 'Sign In'}
